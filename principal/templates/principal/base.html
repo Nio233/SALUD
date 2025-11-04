@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Vida Saludable{% endblock title %}</title>
+
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    
+    <!-- Fuente y estilo opcional -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap (opcional, puedes quitarlo si no lo usas) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color:#f6fdf8; font-family:'Poppins', sans-serif;">
+
+    <!-- Navbar -->
+    {% include "principal/partials/nav.html" %}
+
+    <!-- Contenido dinámico -->
+    <main class="container mt-4">
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <!-- Footer simple -->
+    <footer class="text-center py-3 mt-5" style="background-color:#2e8b57; color:white;">
+        © 2025 Vida Saludable | Creado con ❤️ y Django
+    </footer>
+
+    <!-- Scripts opcionales -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
