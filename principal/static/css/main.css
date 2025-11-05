@@ -1,0 +1,133 @@
+/* ============================
+   Vida Saludable - main.css
+   ============================ */
+
+/* ------ Variables de color ------ */
+:root{
+  --verde: #2e8b57;
+  --verde-oscuro: #237047;
+  --verde-claro: #f6fdf8;
+  --texto: #2e3d34;
+  --muted: #4f6f58;
+  --blanco: #ffffff;
+  --sombra: 0 6px 18px rgba(0,0,0,.08);
+  --sombra-hover: 0 10px 24px rgba(46,139,87,.25);
+}
+
+/* ------ Reset básico (quita el espacio “fantasma”) ------ */
+html, body{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background: var(--verde-claro);
+  color: var(--texto);
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ------ Navbar (pegajosa y sin margen) ------ */
+.navbar{
+  background: var(--verde) !important;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  margin-bottom: 0;
+}
+.navbar-brand{ font-weight: 700; }
+.navbar .nav-link{
+  color: #eaf8ee !important;
+  font-weight: 500;
+  transition: opacity .2s ease, color .2s ease;
+}
+.navbar .nav-link:hover{ opacity: .9; }
+.navbar .nav-link.active,
+.navbar .nav-link[aria-current="page"]{
+  color: #ffffff !important;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+/* ------ Main sin espacio superior extra ------ */
+main.container{
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+/* ------ Encabezados del home ------ */
+h1{
+  margin: 16px 0 6px;
+  text-align: center;
+  color: var(--verde);
+  font-weight: 700;
+}
+.subtitulo{
+  margin: 0 0 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+/* ------ Grid de tarjetas (100% responsive) ------ */
+.contenedor{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+/* ------ Tarjetas ------ */
+.tarjeta{
+  background: var(--blanco);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  transition: transform .25s ease, box-shadow .25s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.tarjeta:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-hover);
+}
+.tarjeta img{
+  width: 100%;
+  aspect-ratio: 16 / 9;     /* mantiene proporción en móviles */
+  object-fit: cover;
+  border-bottom: 3px solid var(--verde);
+}
+.tarjeta h3{
+  font-size: 1.05rem;
+  color: var(--verde);
+  margin: 10px 14px 4px;
+}
+.tarjeta p{
+  color: #666;
+  margin: 0 14px 14px;
+}
+
+/* ------ Footer ------ */
+footer{
+  background: var(--verde);
+  color: #fff;
+}
+
+/* ------ Utilidades ------ */
+.no-top-gap{ margin-top: 0 !important; padding-top: 0 !important; }
+
+/* ------ Breakpoints ------ */
+@media (max-width: 992px){
+  .subtitulo{ font-size: 1rem; }
+}
+@media (max-width: 768px){
+  main.container{ padding-left: 14px; padding-right: 14px; }
+  h1{ font-size: 1.8rem; }
+  .contenedor{ gap: 18px; }
+}
+@media (max-width: 480px){
+  h1{ font-size: 1.5rem; }
+  .subtitulo{ font-size: .95rem; }
+}

@@ -1,4 +1,4 @@
-{% extends "principal/base.html" %}
+| {% extends "principal/base.html" %}
 {% load static %}
 {% block title %}Inicio - Vida Saludable{% endblock %}
 
@@ -65,41 +65,114 @@
     color: #666;
     margin: 2px 0 10px 0;
   }
+
+  .frase-motivacional{
+  --grad-a:#f0fff4;
+  --grad-b:#e6f6ee;
+
+  max-width: 980px;
+  margin: 28px auto 0;        
+  padding: 28px 24px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  box-shadow: 0 10px 28px rgba(0,0,0,.10);
+  text-align: center;  
+  position: relative;
+  overflow: hidden;
+}
+
+.frase-motivacional::before,
+.frase-motivacional::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:18%;
+  height:2px;
+  background: rgba(46,139,87,.25);
+  transform: translateY(-50%);
+}
+.frase-motivacional::before{ left:16px; }
+.frase-motivacional::after{ right:16px; }
+
+.frase-motivacional .frase-wrap{
+  display:flex;
+  justify-content:center;     /* centra el grupo */
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin: 0 auto;
+  max-width: 760px;
+}
+
+.frase-motivacional .quote{
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  line-height:.8;
+  color: rgba(46,139,87,.35);
+  font-weight:700;
+}
+
+.frase-motivacional p{
+  margin:0;
+  font-weight:600;
+  color:#234233;
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+}
+
+.frase-motivacional small{
+  display:block;
+  margin-top:10px;
+  color:#5f7a6a;
+  font-size:.95rem;
+}
+
+/* móvil: simplifica las líneas laterales */
+@media (max-width: 560px){
+  .frase-motivacional{ padding: 20px 16px; }
+  .frase-motivacional::before,
+  .frase-motivacional::after{ display:none; }
+}
 </style>
 
-<h1>🌱 Vida Saludable</h1>
+<h1>🌿Vida Saludable</h1>
 <p class="subtitulo">Explora hábitos que mejoran tu bienestar físico y mental</p>
 
 <div class="contenedor">
   <div class="tarjeta">
-    <img src="{% static 'principal/imagenes/comida_saludable.jpg' %}" alt="Comida saludable">
+    <img src="{%static 'imag/comidasaludable.webp' %}" alt="Comida saludable">
     <h3>Alimentación Balanceada</h3>
     <p>Descubre cómo una dieta equilibrada mejora tu salud y energía.</p>
   </div>
 
   <div class="tarjeta">
-    <img src="{% static 'principal/imagenes/ejercicio.jpg' %}" alt="Ejercicio">
+    <img src="{% static 'imag/ejercicio.jpeg' %}" alt="Ejercicio">
     <h3>Actividad Física</h3>
     <p>Conoce rutinas y ejercicios que fortalecen cuerpo y mente.</p>
   </div>
 
   <div class="tarjeta">
-    <img src="{% static 'principal/imagenes/salud_mental.jpg' %}" alt="Salud mental">
+    <img src="{% static 'imag/salud-mundial.jpg' %}" alt="Salud mental">
     <h3>Bienestar Emocional</h3>
     <p>Aprende a cuidar tu salud mental y mantener una vida equilibrada.</p>
   </div>
 
   <div class="tarjeta">
-    <img src="{% static 'principal/imagenes/dormir_bien.jpg' %}" alt="Sueño saludable">
+    <img src="{% static 'imag/woman-sleeping-min-1536x1024.jpg' %}" alt="Sueño saludable">
     <h3>Descanso y Sueño</h3>
     <p>Conoce la importancia del buen descanso en tu vida diaria.</p>
   </div>
 
   <div class="tarjeta">
-    <img src="{% static 'principal/imagenes/hidratacion.jpg' %}" alt="Hidratación">
+    <img src="{% static 'imag/hidratacion-1200x782.jpeg' %}" alt="Hidratación">
     <h3>Hidratación</h3>
     <p>Descubre por qué el agua es clave para tu bienestar integral.</p>
   </div>
 </div>
+<section class="frase-motivacional fancy">
+  <div class="frase-wrap">
+    <p>Pequeños hábitos cada día construyen una vida grande y saludable.</p>
+  </div>
+  <small>— Tu mejor versión empieza hoy</small>
+</section>
+
 
 {% endblock %}
