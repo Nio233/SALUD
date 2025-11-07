@@ -5,4 +5,5 @@ from . import views
 app_name = 'principal'  # opcional, pero recomendable
 urlpatterns = [
     path('', views.home, name='home'),
+    path('probar-dataset/', views.probar_dataset, name='probar_dataset'),
 ]
