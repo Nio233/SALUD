@@ -1,0 +1,79 @@
+{% extends "principal/base.html" %}
+{% block title %}Predicción{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 920px">
+
+  {% if df_info %}
+  <div class="alert alert-info mt-3">
+    <strong>Dataset cargado:</strong>
+    {{ df_info.filas }} filas, {{ df_info.cols }} columnas.
+    <br>
+    <small>Columnas (máx 15): {{ df_info.cols_str }}</small>
+  </div>
+  {% endif %}
+
+  {% if resultado %}
+    {% if resultado == "Saludable" %}
+      <div class="alert alert-success mt-3">
+        ✅ Resultado: <strong>{{ resultado }}</strong>
+        {% if imc %}<br><small>IMC estimado: {{ imc|floatformat:1 }}</small>{% endif %}
+        <br><small>Puntaje: {{ puntaje }}/6</small>
+      </div>
+    {% else %}
+      <div class="alert alert-warning mt-3">
+        ⚠️ Resultado: <strong>{{ resultado }}</strong>
+        {% if imc %}<br><small>IMC estimado: {{ imc|floatformat:1 }}</small>{% endif %}
+        <br><small>Puntaje: {{ puntaje }}/6</small>
+      </div>
+    {% endif %}
+
+    {% if razones and razones|length %}
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Razones / recomendaciones inmediatas</h5>
+        <ul class="mb-0">
+          {% for r in razones %}
+            <li>{{ r }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+
+    <a href="{% url 'principal:consejos' %}?estado={{ resultado|urlencode }}"
+       class="btn btn-outline-success mb-4">Ver consejos personalizados</a>
+  {% endif %}
+
+  <div class="card shadow-sm mt-3">
+    <div class="card-body">
+      <h4 class="mb-3" style="color:#2e8b57;">🧪 Predicción de salud (reglas simples)</h4>
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+
+        <div class="row g-3">
+          {% for field in form %}
+          <div class="col-md-6">
+            <label class="form-label">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}
+              <div class="form-text">{{ field.help_text }}</div>
+            {% endif %}
+            {% for e in field.errors %}
+              <div class="text-danger small">{{ e }}</div>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-success mt-4">Calcular</button>
+      </form>
+    </div>
+  </div>
+
+  <p class="text-muted mt-3">
+    <small>Nota: esta es una demo con reglas simples. Más adelante podemos entrenar un modelo con tu dataset.</small>
+  </p>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "principal/base.html" %}
+{% block title %}Consejos{% endblock %}
+{% block content %}
+<div class="container" style="max-width: 900px;">
+  <div class="card shadow-sm mt-3">
+    <div class="card-body">
+      <h4 class="mb-2" style="color:#2e8b57">📋 Consejos para tu estado: 
+        {% if estado == 'No saludable' %}
+          <span class="badge bg-danger">No saludable</span>
+        {% else %}
+          <span class="badge bg-success">Saludable</span>
+        {% endif %}
+      </h4>
+      <ul class="mt-2">
+        {% for t in tips %}
+          <li>{{ t }}</li>
+        {% endfor %}
+      </ul>
+      <a class="btn btn-outline-secondary mt-2" href="{% url 'principal:prediccion' %}">Volver a Predicción</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

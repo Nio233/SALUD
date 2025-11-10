@@ -1,0 +1,54 @@
+{% extends "principal/base.html" %}
+{% block title %}Subir dataset{% endblock %}
+{% block content %}
+<div class="container" style="max-width:900px">
+  <h2 class="mt-3" style="color:#2e8b57">📤 Subir dataset</h2>
+
+  {# mensajes flash #}
+  {% if messages %}
+    {% for m in messages %}
+      <div class="alert alert-{{ m.tags|default:'info' }} mt-3">{{ m }}</div>
+    {% endfor %}
+  {% endif %}
+
+  {# FORMULARIO #}
+  <form method="post" enctype="multipart/form-data" class="card p-3 shadow-sm mt-3">
+    {% csrf_token %}
+    <label class="form-label fw-semibold">Selecciona tu archivo (CSV o XLSX)</label>
+    {{ form.archivo }}
+    <div class="form-text">
+      Se guardará normalizado como <code>data/Final_data.csv</code>.
+    </div>
+    <button class="btn btn-success mt-3" type="submit">Subir y reemplazar</button>
+  </form>
+
+  {# RESUMEN DEL DATASET ACTUAL #}
+  {% if info %}
+    <div class="card p-3 shadow-sm mt-4">
+      <h5 class="mb-2">📦 Dataset actual</h5>
+
+      {% if info.error %}
+        <p class="text-danger mb-0">{{ info.error }}</p>
+      {% else %}
+        <p class="mb-1">
+          <span class="badge text-bg-light">Archivo</span>
+          <code class="ms-1">{{ info.ruta }}</code>
+        </p>
+        <p class="mb-1">Filas: <strong>{{ info.filas }}</strong> | Columnas: <strong>{{ info.cols }}</strong></p>
+        <p class="mb-0">Columnas (máx 15): {{ info.nombres }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {# VISTA PREVIA EN LA MISMA PÁGINA #}
+  {% if preview_html %}
+    <div class="card p-3 shadow-sm mt-3">
+      <h5 class="mb-2">👀 Vista previa (10 filas)</h5>
+      <div class="table-responsive">
+        {{ preview_html|safe }}
+      </div>
+      <div class="form-text">* Esta es solo una muestra para verificar estructura y encabezados.</div>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
