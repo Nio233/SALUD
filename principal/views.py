@@ -5,14 +5,15 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
+from principal.ml import predict_estado_salud, model_loaded
 from .forms import DatasetUploadForm, PredictionForm, ContactForm
+
 
 def home(request):
     return render(request, 'principal/home.html')
 
 
 def _leer_csv_con_fallback(ruta: Path) -> pd.DataFrame:
-    """Intenta leer CSV con coma; si solo trae 1 columna, reintenta con ';'."""
     df = pd.read_csv(ruta)
     if df.shape[1] == 1:
         df = pd.read_csv(ruta, sep=';')
@@ -185,9 +186,22 @@ def prediccion(request):
         form = PredictionForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            estado, puntaje, razones, imc = _calcular_saludable(data)
-            resultado = estado
-            request.session['ultimo_resultado_salud'] = estado
+
+            etiqueta, proba = predict_estado_salud(data)
+            if etiqueta is not None:
+                resultado = etiqueta
+                puntaje = round(proba * 100) if proba is not None else None
+                razones = []
+                imc = (
+                    (data.get('peso') or 0)
+                    / ((data.get('altura') or 1) ** 2)
+                    if data.get('peso') and data.get('altura')
+                    else None
+                )
+            else:
+                resultado, puntaje, razones, imc = _calcular_saludable(data)
+
+            request.session['ultimo_resultado_salud'] = resultado
     else:
         form = PredictionForm()
 
@@ -203,6 +217,7 @@ def prediccion(request):
             "df_info": df_info,
         }
     )
+
 
 def consejos(request):
     estado = request.GET.get('estado') or request.session.get('ultimo_resultado_salud', 'Saludable')
@@ -261,7 +276,7 @@ def contacto(request):
     info = {
         "correo_publico": "salud@vidasaludable.com",
         "telefono": "+57 300 000 0000",
-        "whatsapp": "573000000000", 
+        "whatsapp": "573000000000",
         "direccion": "Ibagué, Colombia",
         "instagram": "https://instagram.com/",
     }
