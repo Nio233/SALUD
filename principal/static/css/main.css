@@ -1,8 +1,3 @@
-/* ============================
-   Vida Saludable - main.css
-   ============================ */
-
-/* ------ Variables de color ------ */
 :root{
   --verde: #2e8b57;
   --verde-oscuro: #237047;
@@ -13,8 +8,6 @@
   --sombra: 0 6px 18px rgba(0,0,0,.08);
   --sombra-hover: 0 10px 24px rgba(46,139,87,.25);
 }
-
-/* ------ Reset básico (quita el espacio “fantasma”) ------ */
 html, body{
   margin: 0;
   padding: 0;
@@ -28,7 +21,6 @@ body{
   text-rendering: optimizeLegibility;
 }
 
-/* ------ Navbar (pegajosa y sin margen) ------ */
 .navbar{
   background: var(--verde) !important;
   position: sticky;
@@ -49,14 +41,10 @@ body{
   text-decoration: underline;
   text-underline-offset: 6px;
 }
-
-/* ------ Main sin espacio superior extra ------ */
 main.container{
   padding-top: 16px;
   padding-bottom: 16px;
 }
-
-/* ------ Encabezados del home ------ */
 h1{
   margin: 16px 0 6px;
   text-align: center;
@@ -70,7 +58,6 @@ h1{
   font-size: 1.05rem;
 }
 
-/* ------ Grid de tarjetas (100% responsive) ------ */
 .contenedor{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -78,7 +65,6 @@ h1{
   align-items: stretch;
 }
 
-/* ------ Tarjetas ------ */
 .tarjeta{
   background: var(--blanco);
   border-radius: 16px;
@@ -95,7 +81,7 @@ h1{
 }
 .tarjeta img{
   width: 100%;
-  aspect-ratio: 16 / 9;     /* mantiene proporción en móviles */
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-bottom: 3px solid var(--verde);
 }
@@ -109,16 +95,13 @@ h1{
   margin: 0 14px 14px;
 }
 
-/* ------ Footer ------ */
 footer{
   background: var(--verde);
   color: #fff;
 }
 
-/* ------ Utilidades ------ */
 .no-top-gap{ margin-top: 0 !important; padding-top: 0 !important; }
 
-/* ------ Breakpoints ------ */
 @media (max-width: 992px){
   .subtitulo{ font-size: 1rem; }
 }

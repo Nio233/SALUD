@@ -14,13 +14,11 @@
              href="{% url 'principal:home' %}">Inicio</a>
         </li>
 
-        <!-- AQUÍ va el dataset -->
         <li class="nav-item">
           <a class="nav-link {% if request.resolver_match.url_name == 'subir_dataset' %}active{% endif %}"
              href="{% url 'principal:subir_dataset' %}">Dataset</a>
         </li>
 
-        <!-- Predicción (la implementamos en el paso 2) -->
         <li class="nav-item">
           <a class="nav-link {% if request.resolver_match.url_name == 'prediccion' %}active{% endif %}"
              href="{% url 'principal:prediccion' %}">Predicción</a>

@@ -94,10 +94,6 @@ class PredictionForm(forms.Form):
         return cleaned
     
     def to_dataset_row(self):
-        """
-        Retorna un dict con claves alineadas a las columnas del CSV Final_data.csv.
-        Ajusta los nombres si tu archivo usa encabezados distintos.
-        """
         c = self.cleaned_data
         imc = round(c['peso'] / (c['altura'] ** 2), 2)
 
