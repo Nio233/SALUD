@@ -1,51 +1,15 @@
 {
-  "version": "v1.0",
-  "timestamp": "2025-11-12 01:28",
   "features": [
-    "Edad",
     "Genero",
-    "Peso (kg)",
-    "Altura (m)",
-    "Maximo_LATIDOS_POR_MINUTO",
-    "Promedio_LATIDOS_POR_MINUTO",
-    "Reposo_LATIDOS_POR_MINUTO",
-    "Duracion_Sesion (horas)",
-    "Calorias_Quemadas",
-    "Tipo_Entrenamiento",
-    "Porcentaje_Grasa",
-    "Agua (litros)",
-    "Frecuencia (dias/semanal)",
-    "Nivel_Experiencia",
-    "Indice_De_Masa_Corporal",
     "Peso_kg",
     "Altura_m",
-    "Promedio_lat",
-    "Reposo_lat",
-    "Duracion_h"
-  ],
-  "target": "Saludable",
-  "num_cols": [
-    "Edad",
-    "Maximo_LATIDOS_POR_MINUTO",
-    "Promedio_LATIDOS_POR_MINUTO",
-    "Reposo_LATIDOS_POR_MINUTO",
+    "Promedio_Latidos",
+    "Reposo_Latidos",
+    "Duracion_Sesion_horas",
+    "Agua_Litros",
+    "Frecuencia",
     "Porcentaje_Grasa",
-    "Frecuencia (dias/semanal)",
-    "Nivel_Experiencia",
-    "Peso_kg",
-    "Altura_m",
-    "Promedio_lat",
-    "Reposo_lat",
-    "Duracion_h"
+    "Tipo_Entrenamiento"
   ],
-  "cat_cols": [
-    "Genero",
-    "Peso (kg)",
-    "Altura (m)",
-    "Duracion_Sesion (horas)",
-    "Calorias_Quemadas",
-    "Tipo_Entrenamiento",
-    "Agua (litros)",
-    "Indice_De_Masa_Corporal"
-  ]
-}
+  "classes": ["No saludable", "Saludable"]
+} 

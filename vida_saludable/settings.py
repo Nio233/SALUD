@@ -7,7 +7,23 @@ DATA_DIR = BASE_DIR / "data"
 SECRET_KEY = "django-insecure-g7(ylr=x-#jb(^77qyv6=qc6ww_nf47q+eu@l+g1%+!$#6&+f*"
 
 DEBUG = True
-ALLOWED_HOSTS = ["*"]
+# Hosts permitidos en dev
+ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1"]
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000",
+    "https://localhost:8000",
+    "http://127.0.0.1:8000",
+    "https://127.0.0.1:8000",
+    # Si usas GitHub Codespaces / VSCode Ports:
+    "https://*.app.github.dev",
+    "https://*.githubpreview.dev",
+]
+
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
